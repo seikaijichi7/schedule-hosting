@@ -81,7 +81,7 @@
         const FILE_ID = "11i1M8N80GFCaoS2apXLnnGsC14j4yUCK"; 
         
         // Generiamo l'URL diretto con cache-busting (per forzare l'aggiornamento)
-        const directUrl = `https://drive.google.com/uc?export=view&id=${FILE_ID}&t=${new Date().getTime()}`;
+        const directUrl = `https://drive.google.com/thumbnail?id=${FILE_ID}&t=${new Date().getTime()}`;
         
         // Applichiamo l'immagine e mostriamo l'URL per debug
         document.getElementById('schedule-img').src = directUrl;
