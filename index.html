@@ -3,27 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule Settimanale - ale_postaggio</title>
+    <title>Schedule Settimanale - Ale Postaggio</title>
+    <link href="https://fonts.googleapis.com/css2?family=RoBoTo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #ffffff; --text: #1a1a1a; --card: #f3f4f6; }
-        @media (prefers-color-scheme: dark) { :root { --bg: #121212; --text: #e5e7eb; --card: #1e1e1e; } }
-        body { font-family: sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .container { width: 95%; max-width: 900px; margin: 40px 0; text-align: center; }
-        .image-card { background-color: var(--card); padding: 15px; border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); margin-top: 20px; }
-        img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 0 auto; }
+        /* Variabili per il tema viola Twitch */
+        :root {
+            --bg-color: #1a1a2e; /* Viola scuro di sfondo */
+            --text-color: #efeff1; /* Bianco sporco per il testo */
+            --accent-color: #9146ff; /* Viola brillante Twitch */
+            --card-bg: #2a2a40; /* Viola leggermente più chiaro per la scheda */
+            --glow-color: rgba(145, 70, 255, 0.6); /* Colore del bagliore */
+        }
+
+        body {
+            font-family: 'RoBoTo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Spazio per il footer fiso in basso */
+            position: relative;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 40px auto;
+            text-align: center;
+            z-index: 1; /* Assicura che il contenuto sia sopra gli elementi decorativi */
+        }
+
+        /* Titolo con bagliore morbido */
+        h1 {
+            color: var(--accent-color);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px var(--glow-color); /* Effetto soft glow */
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #adadb8; /* Grigio chiaro per il sottotitolo */
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* Scheda dell'immagine con bordo viola e ombra profonda */
+        .image-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            margin-top: 20px;
+            position: relative;
+        }
+
+        img.main-schedule {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Decorazioni Pokémon qua e là */
+        .pokemon {
+            position: absolute;
+            width: 80px; /* Dimensioni dei Pokémon */
+            height: auto;
+            opacity: 0.8; /* Leggermente trasparenti */
+            z-index: 2;
+        }
+
+        /* Posizionamento dei Pokémon */
+        #pikachu { top: -40px; left: -40px; }
+        #gengar { bottom: -30px; right: -30px; width: 100px; }
+        #mew { top: 20%; right: -50px; width: 70px; transform: rotate(15deg); }
+
+        /* Footer piccolo piccolo in basso basso */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem; /* Testo molto piccolo */
+            color: #555; /* Colore scuro e discreto */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Foto di Seika Ijichi */
+        .seika-photo {
+            width: 40px; /* Dimensioni della foto */
+            height: 40px;
+            border-radius: 50%; /* Foto circolare */
+            border: 1px solid #555;
+            object-fit: cover; /* Assicura che la foto si adatti al cerchio */
+        }
+
+        /* Media query per dispositivi mobili */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .pokemon { width: 60px; }
+            #pikachu { top: -30px; left: -20px; }
+            #gengar { bottom: -20px; right: -15px; width: 80px; }
+            #mew { right: -30px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📅 Schedule Settimanale</h1>
-        <p>ale_postaggio</p>
+        <p class="subtitle">Segui ale_postaggio su Twitch!</p>
+
         <div class="image-card">
-            <img id="img" src="" alt="Caricamento orario...">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu" class="pokemon" id="pikachu">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" alt="Gengar" class="pokemon" id="gengar">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png" alt="Mew" class="pokemon" id="mew">
+
+            <img id="img" src="" alt="Caricamento orario..." class="main-schedule">
         </div>
     </div>
+
+    <div class="footer">
+        <img src="https://i.postimg.cc/9MQMgWJx/Seika-Ijichi.webp" alt="Seika Ijichi" class="seika-photo">
+        <span>made with hate by Seika</span>
+    </div>
+
     <script>
-        // Carichiamo l'immagine aggiungendo un numero casuale alla fine (?t=...)
-        // Questo serve a "fregare" il browser e costringerlo a scaricare l'immagine nuova
+        // Carichiamo l'immagine aggiungendo un parametro temporale (?t=...)
+        // Questo forza il browser a scaricare l'immagine nuova, ignorando la cache
         document.getElementById('img').src = "schedule.jpg?t=" + new Date().getTime();
     </script>
 </body>
